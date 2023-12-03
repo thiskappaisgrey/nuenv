@@ -135,13 +135,7 @@ def runPhase [
     # principle there could be per-phase scripts.
     do --capture-errors {
       nu --log-level warn --env-config $nushell.userEnvFile --commands $phase
-
-      let exitCode = $env.LAST_EXIT_CODE
-
-      if ($exitCode | into int) != 0 {
-        exit $exitCode
-      }
-    } | default {} # To prevent `empty list` being displayed (until Nushell fixes this)
+    } | default {}
   } else if $nix.debug { info $"Skipping empty (blue $name) phase" }
 }
 
